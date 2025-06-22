@@ -14,7 +14,7 @@
       "patterns": [
         {
           "name": "meta.constructor.redscript",
-          "begin": "\\bnew\\s",
+          "begin": "\\bnew\\s+((?<q>`?)[\\p{L}_][\\p{L}_\\p{N}\\p{M}]*(\\k<q>))\\s*\\(",
           "beginCaptures":{
             "0": {
               "name": "keyword.other.declarataion-specifier.redscript"
@@ -23,26 +23,15 @@
               "name": "entity.name.class.redscript"
             }
           },
-          "end": "(?!\\G)(\\))",
+          "end": "\\)",
           "endCaptures": {
-            "1": {
+            "0": {
               "name": "punctuation.definition.arguments.end.redscript"
             }
           },
           "patterns": [
-            {
-              "name": "meta.constructor.class.redscript",
-              "begin": "((?<q>`?)[\\p{L}_][\\p{L}_\\p{N}\\p{M}]*(\\k<q>))(\\()",
-              "beginCaptures" : {
-                "1": {
-                  "name": "entity.name.class.redscript"
-                },
-                "4": {
-                  "name": "punctuation.definition.arguments.begin.redscript"
-                }
-              },
-              "end": "(?!\\G)|"
-            }
+            { "include": "#expressions" }
+
           ]
         }
       ]
